@@ -4,11 +4,32 @@
 #include "Player/AuraPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Interaction/TargetInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
 	bReplicates = true;
 }
+
+void AAuraPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+
+	CursorTrace();
+}
+
+void AAuraPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+	if(!CursorHit.bBlockingHit) return;
+
+	LastTargetActor = ThisTargetActor;
+	ThisTargetActor = Cast<ITargetInterface>(CursorHit.GetActor());
+
+	HighlightTargetActor();
+}
+
 
 void AAuraPlayerController::BeginPlay()
 {
@@ -50,5 +71,58 @@ void AAuraPlayerController::Move(const FInputActionValue& Value)
 	{
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
+	}
+}
+
+void AAuraPlayerController::HighlightTargetActor() const
+{
+	/**
+	 * Line trace from cursor there are several scenarios
+	 * A. Last actor is null && this actor is null
+	 *		 - do nothing
+	 *	B. Last actor is null && this actor is valid
+	 *		 - highlight this actor
+	 *	C. Last actor is valid && this actor is null
+	 *		- unhighlight last actor
+	 *	D. Both actors are valid but last actor != this actor
+	 *		- unhighlight last actor and highlight this actor
+	 *	E. Both actors are valid and last actor == this actor
+	 *		- do nothing
+	 */
+
+	if(LastTargetActor == nullptr)
+	{
+		if(ThisTargetActor != nullptr)
+		{
+			//case b
+			ThisTargetActor->HighlightActor();
+		}
+		else
+		{
+			//case a
+			return;
+		}
+	}
+	else // last actor is valid
+	{
+		if(ThisTargetActor == nullptr)
+		{
+			//case c
+			LastTargetActor->UnhighlightActor();
+		}
+		else
+		{
+			if(LastTargetActor != ThisTargetActor)
+			{
+				//case d
+				LastTargetActor->UnhighlightActor();
+				ThisTargetActor->HighlightActor();
+			}
+			else
+			{
+				//case e
+				return;
+			}
+		}
 	}
 }
