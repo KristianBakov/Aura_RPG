@@ -35,6 +35,6 @@ private:
 	void CursorTrace();
 	void HighlightTargetActor() const;
 
-	ITargetInterface* LastTargetActor;
-	ITargetInterface* ThisTargetActor;
+	TObjectPtr<ITargetInterface> LastTargetActor;
+	TObjectPtr<ITargetInterface> ThisTargetActor;
 };
