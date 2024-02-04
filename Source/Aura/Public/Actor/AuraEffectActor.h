@@ -4,8 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GameplayEffectTypes.h"
 #include "AuraEffectActor.generated.h"
 
+class UAbilitySystemComponent;
+struct FActiveGameplayEffectHandle;
 class UGameplayEffect;
 class USphereComponent;
 
@@ -34,8 +37,10 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	TMap<FActiveGameplayEffectHandle, UAbilitySystemComponent*> ActiveEffectHandles;
+
 	UFUNCTION(BlueprintCallable, Category = "Applied Effects")
-	void ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass) const;
+	void ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass);
 	UFUNCTION(BlueprintCallable, Category = "Applied Effects")
 	void OnOverlap(AActor* TargetActor);
 	UFUNCTION(BlueprintCallable, Category = "Applied Effects")
