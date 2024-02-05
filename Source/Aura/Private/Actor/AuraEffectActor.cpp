@@ -49,7 +49,6 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, const FGameplayE
 	const bool bIsInfinite =  EffectSpecHandle.Data.Get()->Def.Get()->DurationPolicy == EGameplayEffectDurationType::Infinite;
 	if (bIsInfinite && GameplayEffectContainer.EffectRemovalPolicy == EEffectRemovalPolicy::RemoveOnEndOverlap)
 	{
-		UE_LOG( LogTemp, Warning, TEXT("is infinite, added") );
 		ActiveEffectHandles.Add(ActiveEffectHandle, TargetASC);
 	}
 }
