@@ -4,12 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "GameplayEffectTypes.h"
+#include "GameplayEffect.h"
 #include "AuraEffectActor.generated.h"
 
 class UAbilitySystemComponent;
 struct FActiveGameplayEffectHandle;
-class UGameplayEffect;
 class USphereComponent;
 
 UENUM(BlueprintType)
@@ -33,17 +32,17 @@ struct FGameplayEffectContainer
 	GENERATED_BODY()
 
 	FGameplayEffectContainer(): EffectApplicationPolicy(EEffectApplicationPolicy::ApplyOnOverlap),
-	EffectRemovalPolicy(EEffectRemovalPolicy::DoNotRemove)
-	{
-	}
-
+	EffectRemovalPolicy(EEffectRemovalPolicy::DoNotRemove) {}
 	FGameplayEffectContainer(EEffectApplicationPolicy EAP, EEffectRemovalPolicy ERP ):
-	EffectApplicationPolicy(EAP), EffectRemovalPolicy(ERP)
-	{
-	}
+	EffectApplicationPolicy(EAP), EffectRemovalPolicy(ERP) {}
 	FGameplayEffectContainer(TSubclassOf<UGameplayEffect> GE, EEffectApplicationPolicy EAP, EEffectRemovalPolicy ERP ):
-	GameplayEffectClass(GE), EffectApplicationPolicy(EAP), EffectRemovalPolicy(ERP)
+	GameplayEffectClass(GE), EffectApplicationPolicy(EAP), EffectRemovalPolicy(ERP) {}
+
+	bool operator==(const FGameplayEffectContainer& Other) const
 	{
+		return GameplayEffectClass == Other.GameplayEffectClass &&
+			   EffectApplicationPolicy == Other.EffectApplicationPolicy &&
+			   EffectRemovalPolicy == Other.EffectRemovalPolicy;
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
@@ -67,9 +66,9 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable, Category = "Applied Effects")
-	void AddGameplayEffect(const FGameplayEffectContainer& GameplayEffectContainer);
+	void AddGameplayEffectToList(const FGameplayEffectContainer& GameplayEffectContainer);
 	UFUNCTION(BlueprintCallable, Category = "Applied Effects")
-	void RemoveGameplayEffect(const FGameplayEffectContainer& GameplayEffectContainer);
+	void RemoveGameplayEffectFromList(const FGameplayEffectContainer& GameplayEffectContainer);
 	UFUNCTION(BlueprintCallable, Category = "Applied Effects")
 	void ApplyEffectToTarget(AActor* TargetActor, const FGameplayEffectContainer GameplayEffectContainer);
 	UFUNCTION(BlueprintCallable, Category = "Applied Effects")
@@ -82,24 +81,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	TArray<FGameplayEffectContainer> GameplayEffects;
-	TMap<FActiveGameplayEffectHandle, UAbilitySystemComponent*> ActiveEffectHandles;
-	
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	// EEffectApplicationPolicy InstantEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	// EEffectApplicationPolicy DurationEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	// EEffectApplicationPolicy InfiniteEffectApplicationPolicy = EEffectApplicationPolicy::DoNotApply;
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	// EEffectRemovalPolicy InfiniteEffectRemovalPolicy = EEffectRemovalPolicy::RemoveOnEndOverlap;
-	
 
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	// TSubclassOf<UGameplayEffect> InstantGameplayEffectClass;
-	//
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	// TSubclassOf<UGameplayEffect> DurationGameplayEffectClass;
-	//
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
-	// TSubclassOf<UGameplayEffect> InfiniteGameplayEffectClass;
+	TMap<FActiveGameplayEffectHandle, UAbilitySystemComponent*> ActiveEffectHandles;
+
+private:
+	void TryRemoveActiveInfiniteGameplayEffectFromTarget(AActor* TargetActor);
 };
