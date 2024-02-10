@@ -34,7 +34,7 @@ FString("Increases health and health regeneration")
 	);
 
 	
-/*
+	 /*
 	 * Secondary Attributes
 	 */
 
@@ -87,4 +87,38 @@ FString("Increases health and health regeneration")
 		FName("Attributes.Secondary.MaxMana"),
 		FString("Maximum amount of Mana obtainable")
 		);
+
+	/*
+	* Input Tags
+	*/
+
+	Instance.InputTag_LMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.LMB"),
+		FString("Left Mouse Button")
+		);
+
+	Instance.InputTag_RMB = UGameplayTagsManager::Get().AddNativeGameplayTag( 
+		FName("InputTag.RMB"),
+		FString("Right Mouse Button")
+		);
+
+	Instance.InputTag_1 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.1"),
+		FString("Input tag for 1 key")
+		);
+
+	Instance.InputTag_2 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("InputTag.2"),
+	FString("Input tag for 2 key")
+	);
+
+	Instance.InputTag_3 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("InputTag.3"),
+	FString("Input tag for 3 key")
+	);
+
+	Instance.InputTag_4 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("InputTag.4"),
+	FString("Input tag for 4 key")
+	);
 }
