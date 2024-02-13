@@ -37,11 +37,12 @@ private:
 	TObjectPtr<UInputAction> MoveAction;
 
 	void Move(const FInputActionValue& Value);
-	void CursorTrace();
 	void HighlightTargetActor() const;
-
+	void CursorTrace();
+	
 	ITargetInterface* LastTargetActor;
 	ITargetInterface* ThisTargetActor;
+	FHitResult CursorHit;
 
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
