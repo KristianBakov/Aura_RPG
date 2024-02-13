@@ -65,4 +65,6 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	TObjectPtr<USplineComponent> Spline;
+
+	void AutoRun();
 };
