@@ -23,5 +23,8 @@ protected:
 	TSubclassOf<AAuraProjectile> ProjectileClass;
 
 	UFUNCTION(BlueprintCallable, Category = "Projectile")
-	void SpawnProjectile();
+	void SpawnProjectile(const FVector& ProjectileTargetLocation);
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile")
+	float ProjectileSpawnPitch = 0.0f;
 };
