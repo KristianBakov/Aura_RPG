@@ -13,19 +13,20 @@ UTargetDataUnderMouse* UTargetDataUnderMouse::CreateTargetDataUnderMouse(UGamepl
 void UTargetDataUnderMouse::Activate()
 {
 	const bool bIsLocallyControlled = Ability->GetCurrentActorInfo()->IsLocallyControlled();
-	if(bIsLocallyControlled)
+	if (bIsLocallyControlled)
 	{
 		SendMouseCursorData();
 	}
 	else
 	{
-		const FGameplayAbilitySpecHandle AbilitySpecHandle = GetAbilitySpecHandle();
+		const FGameplayAbilitySpecHandle SpecHandle = GetAbilitySpecHandle();
 		const FPredictionKey ActivationPredictionKey = GetActivationPredictionKey();
-		AbilitySystemComponent.Get()->AbilityTargetDataSetDelegate(AbilitySpecHandle, ActivationPredictionKey)
+		AbilitySystemComponent.Get()->AbilityTargetDataSetDelegate(SpecHandle, ActivationPredictionKey)
 		.AddUObject(this, &UTargetDataUnderMouse::OnTargetDataReplicatedCallback);
-		const bool bCalledDelegate = AbilitySystemComponent.Get()->CallReplicatedTargetDataDelegatesIfSet(AbilitySpecHandle, ActivationPredictionKey);
-
-		if(!bCalledDelegate)
+		const bool bCalledDelegate = AbilitySystemComponent.Get()->CallReplicatedTargetDataDelegatesIfSet(SpecHandle,
+			ActivationPredictionKey);
+		
+		if (!bCalledDelegate)
 		{
 			SetWaitingOnRemotePlayerData();
 		}
