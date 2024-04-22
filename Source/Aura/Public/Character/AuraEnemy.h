@@ -7,6 +7,7 @@
 #include "Interaction/TargetInterface.h"
 #include "AuraEnemy.generated.h"
 
+class UWidgetComponent;
 /**
  * 
  */
