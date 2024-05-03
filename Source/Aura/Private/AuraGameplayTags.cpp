@@ -121,4 +121,9 @@ FString("Increases health and health regeneration")
 	FName("InputTag.4"),
 	FString("Input tag for 4 key")
 	);
+
+	Instance.Damage = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Damage"),
+FString("Tag for damage")
+	);
 }
