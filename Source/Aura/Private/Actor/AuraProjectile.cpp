@@ -54,7 +54,6 @@ void AAuraProjectile::OnSphereOverlapBegin(UPrimitiveComponent* OverlappedCompon
                                            UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	PlayImpactEffects();
-	UE_LOG( LogTemp, Warning, TEXT("Projectile Hit %s"), *OtherActor->GetName()	);
 
 	if(HasAuthority())
 	{
