@@ -61,10 +61,26 @@ void UAuraAbilitySystemLibrary::InitializeDefaultAttributes(const UObject* World
 }
 
 void UAuraAbilitySystemLibrary::ApplyAttributeDefaultsToSelf(const AActor* AvatarActor, const TSubclassOf<UGameplayEffect> AttributeOverrideGameplayEffect,
-                                                             const float Level, UAbilitySystemComponent* ASC)
+															 const float Level, UAbilitySystemComponent* ASC)
 {
 	FGameplayEffectContextHandle AttributesContextHandle = ASC->MakeEffectContext();
 	AttributesContextHandle.AddSourceObject(AvatarActor);
 	const FGameplayEffectSpecHandle AttributesSpecHandle = ASC->MakeOutgoingSpec(AttributeOverrideGameplayEffect, Level, AttributesContextHandle);
 	ASC->ApplyGameplayEffectSpecToSelf(*AttributesSpecHandle.Data.Get());
 }
+
+void UAuraAbilitySystemLibrary::GiveStartupAbilities(const UObject* WorldContextObject, UAbilitySystemComponent* ASC)
+{
+	const AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(WorldContextObject));
+	if(AuraGameMode == nullptr) return;
+
+	const UCharacterClassInfo* CharacterClassInfo = AuraGameMode->CharacterClassInfo;
+	for (const TSubclassOf<UGameplayAbility> AbilityClass : CharacterClassInfo->CommonAbilities)
+	{
+		FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(AbilityClass, 1);
+		ASC->GiveAbility(AbilitySpec);
+	} 
+	
+}
+
+
