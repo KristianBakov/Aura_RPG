@@ -82,5 +82,3 @@ void UAuraAbilitySystemLibrary::GiveStartupAbilities(const UObject* WorldContext
 	} 
 	
 }
-
-

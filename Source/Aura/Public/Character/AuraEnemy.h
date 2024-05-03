@@ -28,6 +28,7 @@ public:
 
 	// ICombatInterface
 	virtual int32 GetCurrentLevel() const override { return Level; }
+	virtual void Die() override;
 	// End ICombatInterface
 
 	UPROPERTY(BlueprintReadOnly)
@@ -44,8 +45,11 @@ public:
 
 	void HitReactTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
 
-	UPROPERTY(BlueprintReadOnly, Category = "Character Class Defaults")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Character Class Defaults")
 	float BaseWalkSpeed = 200.0f;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
+	float LifeSpan = 5.0f;
 
 protected:
 	virtual void BeginPlay() override;
