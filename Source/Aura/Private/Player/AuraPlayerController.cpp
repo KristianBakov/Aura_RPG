@@ -38,10 +38,6 @@ void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount, 
 		DamageText->AttachToComponent(TargetCharacter->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
 		DamageText->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 		DamageText->SetDamageText(DamageAmount);
-		UE_LOG(LogTemp, Warning, TEXT("Target Root: %s"), *TargetCharacter->GetRootComponent()->GetName());
-		UE_LOG(LogTemp, Warning, TEXT("Owner: %s"), *DamageText->GetOwner()->GetName());
-		UE_LOG(LogTemp, Warning, TEXT("Position: %s"), *DamageText->GetComponentLocation().ToString());
-		
 	}
 }
 
