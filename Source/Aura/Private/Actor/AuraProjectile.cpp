@@ -74,9 +74,9 @@ void AAuraProjectile::PlayImpactEffects() const
 {
 	UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(), FRotator::ZeroRotator);
 	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation(), FRotator::ZeroRotator);
-	if(LoopingSoundComponent && LoopingSoundComponent->IsPlaying())
-	{
-		LoopingSoundComponent->Stop();	
+	if(LoopingSoundComponent)
+	{	
+		if(LoopingSoundComponent->IsPlaying()) LoopingSoundComponent->Stop();	
 	}
 }
 
