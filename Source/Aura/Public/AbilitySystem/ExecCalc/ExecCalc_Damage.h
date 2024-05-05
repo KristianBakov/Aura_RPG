@@ -3,6 +3,8 @@
 #pragma once
 #define MAX_ARMOR_PENETRATION 100.0f
 #define MAX_ARMOR 100.0f
+#define ARMOR_PENETRATION_CURVE_NAME "ArmorPenetration"
+#define EFFECTIVE_ARMOR_CURVE_NAME "EffectiveArmor"
 
 #include "CoreMinimal.h"
 #include "GameplayEffectExecutionCalculation.h"
@@ -21,7 +23,4 @@ public:
 
 	virtual void Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams,
 		FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const override;
-
-	float ArmorPenetrationCoefficient = 0.25f;
-	float ArmorCoefficient = 0.33f;
 };
