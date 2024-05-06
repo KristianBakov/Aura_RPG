@@ -77,7 +77,7 @@ void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, 
 }
 
 void UAuraAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData& Data,
-	FEffectProperties& EffectProperties)
+	FEffectProperties& EffectProperties) const
 {
 	//source == other (actor), causer of the effect
 	//target == this, the target of the effect (owner of this AttributeSet)
