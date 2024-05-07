@@ -124,11 +124,17 @@ FString("Increases health and health regeneration")
 
 	Instance.Damage = UGameplayTagsManager::Get().AddNativeGameplayTag(
 	FName("Damage"),
-FString("Tag for damage")
+	FString("Tag for damage")
 	);
 
+	Instance.Damage_Fire = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Damage.Fire"),
+	FString("Tag for damage")
+	);
+	Instance.DamageTypes.Add(Instance.Damage_Fire);
+	
 	Instance.Effects_HitReact = UGameplayTagsManager::Get().AddNativeGameplayTag(
 	FName("Effects.HitReact"),
-FString("Effect tag for hit reaction")
+	FString("Effect tag for hit reaction")
 	);
 }
