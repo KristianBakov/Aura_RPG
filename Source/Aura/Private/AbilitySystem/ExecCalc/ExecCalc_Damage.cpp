@@ -3,6 +3,7 @@
 
 #include "AbilitySystem/ExecCalc/ExecCalc_Damage.h"
 #include "AbilitySystemComponent.h"
+#include "AuraAbilityTypes.h"
 #include "AuraGameplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
@@ -66,6 +67,8 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	EvaluationParameters.SourceTags = SourceTags;
 	EvaluationParameters.TargetTags = TargetTags;
 
+	FGameplayEffectContextHandle EffectContextHandle = Spec.GetContext();
+
 	// Get Damage set by caller magnitude
 	float Damage = Spec.GetSetByCallerMagnitude(FAuraGameplayTags::Get().Damage);
 
@@ -75,8 +78,9 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	TargetBlockChance = FMath::Max<float>(0.0f, TargetBlockChance);
 
 	const float RandBlockNum = FMath::RandRange(1, 100);
-	if(RandBlockNum <= TargetBlockChance )
+	if(RandBlockNum <= TargetBlockChance)
 	{
+		UAuraAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle, true);
 		//if block, half the damage
 		Damage *= 0.5f;
 	}
@@ -127,6 +131,7 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	const float RandCritNum = FMath::RandRange(1, 100);
 	if(RandCritNum <= EffectiveCritChance)
 	{
+		UAuraAbilitySystemLibrary::SetIsCriticalHit(EffectContextHandle, true);
 		//if it is critical hit, double the damage and add critical hit damage bonus
 		Damage *= 2.0f;
 		Damage += SourceCriticalHitDamage;

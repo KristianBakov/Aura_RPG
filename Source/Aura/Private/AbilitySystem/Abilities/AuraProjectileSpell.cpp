@@ -61,7 +61,6 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(SpecHandle, AuraGameplayTags.Damage, ScaledDamage);
 		Projectile->DamageEffectSpecHandle = SpecHandle;
 		
-		UE_LOG(LogTemp, Warning, TEXT("Projectile Spawned"));
 		Projectile->FinishSpawning(SpawnTransform);
 	}
 }
