@@ -50,10 +50,14 @@ void AAuraProjectile::Destroyed()
 	Super::Destroyed();
 }
 
-void AAuraProjectile::OnSphereOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
                                            UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	PlayImpactEffects();
+	if(DamageEffectSpecHandle.Data.IsValid() && DamageEffectSpecHandle.Data.Get()->GetContext().GetEffectCauser() == OtherActor) return;
+	if(!bHit)
+	{
+		PlayImpactEffects();	
+	}
 
 	if(HasAuthority())
 	{
