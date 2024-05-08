@@ -54,6 +54,7 @@ void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, const FGameplayE
 		ActiveEffectHandles.Add(ActiveEffectHandle, TargetASC);
 	}
 
+	//TODO: Determine whether to use bDestroyOnEffectApplication for future effects
 	if(!bIsInfinite)
 	{
 		Destroy();
