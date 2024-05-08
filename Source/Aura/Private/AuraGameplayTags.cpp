@@ -175,6 +175,15 @@ FString("Resistance to Arcane Damage")
 	);
 
 	/*
+	* Abilities
+	*/
+
+	Instance.Abilities_Attack = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Abilities.Attack"),
+	FString("Attack ability tag")
+	);
+
+	/*
 	* Map of Damage types to Resistances
 	*/
 
