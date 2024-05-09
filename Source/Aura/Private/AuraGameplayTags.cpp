@@ -184,6 +184,25 @@ FString("Resistance to Arcane Damage")
 	);
 
 	/*
+	* Montage
+	*/
+
+	Instance.Montage_Attack_Weapon = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Montage.Attack.Weapon"),
+	FString("Weapon attack montage")
+	);
+
+	Instance.Montage_Attack_RightHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Montage.Attack.RightHand"),
+	FString("Right hand attack montage")
+	);
+
+	Instance.Montage_Attack_LeftHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Montage.Attack.LeftHand"),
+	FString("Left hand attack montage")
+	);
+
+	/*
 	* Map of Damage types to Resistances
 	*/
 
