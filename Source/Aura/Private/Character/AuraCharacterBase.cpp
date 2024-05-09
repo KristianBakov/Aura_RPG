@@ -78,6 +78,11 @@ FVector AAuraCharacterBase::GetCombatSocketLocation_Implementation() const
 	return Weapon->GetSocketLocation(WeaponTipSocketName);
 }
 
+TArray<FTaggedMontage> AAuraCharacterBase::GetAttackMontages_Implementation()
+{
+	return AttackMontages;
+}
+
 void AAuraCharacterBase::ApplyEffectToSelf(const TSubclassOf<UGameplayEffect> GameplayEffect, float Level) const
 {
 	check(IsValid(GetAbilitySystemComponent()));
