@@ -39,7 +39,7 @@ public:
 	virtual int32 GetCurrentLevel() const;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
-	FVector GetCombatSocketLocation() const;
+	FVector GetCombatSocketLocation(const FGameplayTag& MontageTag) const;
 	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void SetFacingTarget(const FVector& TargetLocation);
