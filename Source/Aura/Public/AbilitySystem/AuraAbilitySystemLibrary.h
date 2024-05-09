@@ -50,6 +50,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameplayMechanics")
 	static void GetLivePlayersWithinRadius(const UObject* WorldContextObject, TArray<AActor*>& OutOverlappingActors,
 		const TArray<AActor*>& ActorsToIgnore, float Radius, const FVector& SphereOrigin);
+
+	UFUNCTION(BlueprintPure, BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameplayMechanics")
+	static bool IsNotFriend(AActor* FirstActor, AActor* SecondActor);
 	
 private:
 	static void ApplyAttributeDefaultsToSelf(const AActor* AvatarActor, TSubclassOf<UGameplayEffect> AttributeOverrideGameplayEffect, float Level, UAbilitySystemComponent* ASC);
