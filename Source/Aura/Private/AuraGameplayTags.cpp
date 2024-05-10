@@ -184,22 +184,46 @@ FString("Resistance to Arcane Damage")
 	);
 
 	/*
-	* Montage
+	* Combat sockets
 	*/
 
-	Instance.Montage_Attack_Weapon = UGameplayTagsManager::Get().AddNativeGameplayTag(
-	FName("Montage.Attack.Weapon"),
-	FString("Weapon attack montage")
+	Instance.CombatSocket_Weapon = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("CombatSocket.Weapon"),
+	FString("Weapon combat socket montage")
 	);
 
-	Instance.Montage_Attack_RightHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
-	FName("Montage.Attack.RightHand"),
-	FString("Right hand attack montage")
+	Instance.CombatSocket_RightHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("CombatSocket.RightHand"),
+	FString("Right hand combat socket montage")
 	);
 
-	Instance.Montage_Attack_LeftHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
-	FName("Montage.Attack.LeftHand"),
-	FString("Left hand attack montage")
+	Instance.CombatSocket_LeftHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("CombatSocket.LeftHand"),
+	FString("Left hand combat socket montage")
+	);
+
+	/*
+	* Montage attack tags
+	*/
+
+	Instance.Montage_Attack_1 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Montage.Attack.1"),
+	FString("Attack 1 tag")
+	);
+
+	Instance.Montage_Attack_2 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Montage.Attack.2"),
+	FString("Attack 2 tag")
+	);
+
+	Instance.Montage_Attack_3 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Montage.Attack.3"),
+	FString("Attack 3 tag")
+	);
+
+	Instance.Montage_Attack_4 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Montage.Attack.4"),
+	FString("Attack 4 tag")
 	);
 
 	/*
