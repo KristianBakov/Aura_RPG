@@ -60,7 +60,7 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 		OtherActor)) return;
 	if(!bHit)
 	{
-		PlayImpactEffects();	
+		PlayImpactEffects();
 	}
 
 	if(HasAuthority())
@@ -78,7 +78,7 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 	}
 }
 
-void AAuraProjectile::PlayImpactEffects() const
+void AAuraProjectile::PlayImpactEffects()
 {
 	UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(), FRotator::ZeroRotator);
 	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation(), FRotator::ZeroRotator);
@@ -86,5 +86,6 @@ void AAuraProjectile::PlayImpactEffects() const
 	{	
 		if(LoopingSoundComponent->IsPlaying()) LoopingSoundComponent->Stop();	
 	}
+	bHit = true;
 }
 
