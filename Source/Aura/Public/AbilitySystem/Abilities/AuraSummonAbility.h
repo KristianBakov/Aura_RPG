@@ -32,5 +32,5 @@ public:
 	float MaxSpawnDistance = 250.0f;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Summoning")
-	float SpawnSpread = 90.0f;
+	float SpawnSpreadAngle = 90.0f;
 };
