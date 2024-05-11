@@ -189,17 +189,22 @@ FString("Resistance to Arcane Damage")
 
 	Instance.CombatSocket_Weapon = UGameplayTagsManager::Get().AddNativeGameplayTag(
 	FName("CombatSocket.Weapon"),
-	FString("Weapon combat socket montage")
+	FString("Weapon combat socket")
 	);
 
 	Instance.CombatSocket_RightHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
 	FName("CombatSocket.RightHand"),
-	FString("Right hand combat socket montage")
+	FString("Right hand combat socket")
 	);
 
 	Instance.CombatSocket_LeftHand = UGameplayTagsManager::Get().AddNativeGameplayTag(
 	FName("CombatSocket.LeftHand"),
-	FString("Left hand combat socket montage")
+	FString("Left hand combat socket")
+	);
+
+	Instance.CombatSocket_Tail = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("CombatSocket.Tail"),
+	FString("Tail combat socket")
 	);
 
 	/*
