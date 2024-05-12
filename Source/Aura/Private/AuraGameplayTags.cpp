@@ -182,6 +182,11 @@ FString("Resistance to Arcane Damage")
 	FName("Abilities.Attack"),
 	FString("Attack ability tag")
 	);
+	
+	Instance.Abilities_Summon = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Abilities.Summon"),
+	FString("Summon ability tag")
+	);
 
 	/*
 	* Combat sockets
