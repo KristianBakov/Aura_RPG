@@ -188,6 +188,11 @@ FString("Resistance to Arcane Damage")
 	FString("Summon ability tag")
 	);
 
+	Instance.Abilities_Fire_FireBolt = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Abilities.Fire.FireBolt"),
+	FString("FireBolt ability tag")
+	);
+
 	/*
 	* Combat sockets
 	*/
