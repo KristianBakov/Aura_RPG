@@ -25,6 +25,7 @@ struct FUIWidgetRow : public FTableRowBase
 };
 
 
+class UAuraAbilitySystemComponent;
 class UAuraUserWidget;
 struct FOnAttributeChangeData;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMessageWidgetRowSignature, FUIWidgetRow, Row);
@@ -67,6 +68,8 @@ protected:
 	
 	template<typename T>
 	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
+
+	void OnInitializeStartupAbilities(UAuraAbilitySystemComponent* AuraASC);
 };
 
 template <typename T>
