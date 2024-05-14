@@ -194,6 +194,15 @@ FString("Resistance to Arcane Damage")
 	);
 
 	/*
+	* Cooldown
+	*/
+
+	Instance.Cooldown_Fire_FireBolt = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Cooldown.Fire.FireBolt"),
+	FString("FireBolt cooldown tag")
+	);
+
+	/*
 	* Combat sockets
 	*/
 
