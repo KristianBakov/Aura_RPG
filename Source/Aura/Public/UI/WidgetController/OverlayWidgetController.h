@@ -7,6 +7,7 @@
 #include "UI/WidgetController/AuraWidgetController.h"
 #include "OverlayWidgetController.generated.h"
 
+struct FAuraAbilityInfo;
 class UAbilityInfo;
 
 USTRUCT(BlueprintType)
@@ -30,6 +31,7 @@ class UAuraUserWidget;
 struct FOnAttributeChangeData;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMessageWidgetRowSignature, FUIWidgetRow, Row);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeChangedSignature, float, NewAttributeValue);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAbilityInfoSugnature, const FAuraAbilityInfo&, AbilityInfo);
 
 
 /**
@@ -58,6 +60,9 @@ public:
 	
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
 	FMessageWidgetRowSignature MessageWidgetRowDelegate;
+
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
+	FAbilityInfoSugnature AbilityInfoDelegate;
 protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget Data")
@@ -67,9 +72,9 @@ protected:
 	TObjectPtr<UAbilityInfo> AbilityInfo;
 	
 	template<typename T>
-	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
+	static T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
 
-	void OnInitializeStartupAbilities(UAuraAbilitySystemComponent* AuraASC);
+	void OnInitializeStartupAbilities(UAuraAbilitySystemComponent* AuraASC) const;
 };
 
 template <typename T>
