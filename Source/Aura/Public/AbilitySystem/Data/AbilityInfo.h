@@ -7,6 +7,9 @@
 #include "Engine/DataAsset.h"
 #include "AbilityInfo.generated.h"
 
+/**
+ *  Struct to hold information about an ability
+ */
 USTRUCT(BlueprintType)
 struct FAuraAbilityInfo
 {
