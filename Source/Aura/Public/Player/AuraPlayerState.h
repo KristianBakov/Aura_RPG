@@ -7,6 +7,7 @@
 #include "GameFramework/PlayerState.h"
 #include "AuraPlayerState.generated.h"
 
+class ULevelUpInfo;
 class UAbilitySystemComponent;
 class UAttributeSet;
 /**
@@ -24,12 +25,15 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet;}
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TObjectPtr<ULevelUpInfo> LevelUpInfo;
+	
+	FOnPlayerStatChanged OnLevelChangedDelegate;
+	FOnPlayerStatChanged OnXPChangedDelegate;
 	
 	FORCEINLINE int32 GetCurrentLevel() const { return Level; }
 	FORCEINLINE int32 GetCurrentXP() const { return XP; }
-
-	FOnPlayerStatChanged OnLevelChangedDelegate;
-	FOnPlayerStatChanged OnXPChangedDelegate;
 
 	void SetLevel(int32 NewLevel);
 	void SetXP(int32 NewXP);
