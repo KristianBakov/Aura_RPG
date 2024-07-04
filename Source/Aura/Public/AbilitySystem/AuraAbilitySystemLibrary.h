@@ -53,6 +53,9 @@ public:
 
 	UFUNCTION(BlueprintPure, BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameplayMechanics")
 	static bool IsNotFriend(AActor* FirstActor, AActor* SecondActor);
+
+	UFUNCTION(BlueprintCallable, Category = "AuraAbilitySystemLibrary|GameplayMechanics")
+	static int32 GetXPForKillByClass(const UObject* WorldContextObject, ECharacterClass CharacterClass, int32 Level);
 	
 private:
 	static void ApplyAttributeDefaultsToSelf(const AActor* AvatarActor, TSubclassOf<UGameplayEffect> AttributeOverrideGameplayEffect, float Level, UAbilitySystemComponent* ASC);

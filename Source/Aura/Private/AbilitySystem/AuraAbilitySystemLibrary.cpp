@@ -164,3 +164,9 @@ bool UAuraAbilitySystemLibrary::IsNotFriend(AActor* FirstActor, AActor* SecondAc
 	const bool bFriends = bBothArePlayers || bBothAreEnemies;
 	return !bFriends;
 }
+
+int32 UAuraAbilitySystemLibrary::GetXPForKillByClass(const UObject* WorldContextObject, ECharacterClass CharacterClass,
+	int32 Level)
+{
+	
+}
