@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include  "AbilitySystemInterface.h"
 #include "Interaction/CombatInterface.h"
+#include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "AuraCharacterBase.generated.h"
 
 class UNiagaraSystem;
@@ -37,6 +38,7 @@ public:
 	virtual FTaggedMontage GetTaggedMontageByTag_Implementation(const FGameplayTag& MontageTag) const override;
 	virtual int32 GetMinionCount_Implementation() const override;
 	virtual void IncrementMinionCount_Implementation(int32 Amount) override;
+	virtual ECharacterClass GetCharacterClass_Implementation() const override;
 	/* ICombatInterface */
 
 	UFUNCTION(NetMulticast, Reliable)
@@ -103,6 +105,10 @@ protected:
 
 	/* Minions */
 	int32 MinionCount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
+	ECharacterClass CharacterClass = ECharacterClass::Warrior;
+
 	
 private:
 	UPROPERTY(EditAnywhere, Category = "Abilities")
