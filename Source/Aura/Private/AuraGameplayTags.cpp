@@ -88,6 +88,15 @@ FString("Increases health and health regeneration")
 		);
 
 	/*
+	* Meta Attributes
+	*/
+
+	Instance.Attributes_Meta_IncomingXP = UGameplayTagsManager::Get().AddNativeGameplayTag(
+	FName("Attributes.Meta.IncomingXP"),
+	FString("Incoming XP tag")
+	);
+
+	/*
 	* Input Tags
 	*/
 
